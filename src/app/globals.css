@@ -2,28 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  
+ 
 }
 
 @layer utilities {
@@ -31,3 +12,29 @@ body {
     text-wrap: balance;
   }
 }
+
+/* styles/globals.css */
+.input-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-container label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 0.5rem;
+  background: white;
+  color: #6b7280; /* Tailwind gray-700 */
+  transform-origin: top left;
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+  transform: translate(0.5rem, 0.5rem) scale(1);
+}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label {
+  transform: translate(0, -1rem) scale(0.75);
+  color: #3b82f6; /* Tailwind blue-500 */
+}
+

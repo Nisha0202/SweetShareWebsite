@@ -7,12 +7,21 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: '#6aa84f',
+        secondary: '#ff895b',
+        accent: '#fce5cd',
+        text: '#555555',
+        background: '#fffff'
+      },
+      // Generate utility classes for custom colors
+      utility: {
+        colors: ['primary', 'secondary', 'accent', 'text', 'backgrounf'],
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
 };
+

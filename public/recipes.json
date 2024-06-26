@@ -1,0 +1,69 @@
+[
+    {
+      "_id": "ObjectId1",
+      "author": "UserId1",
+      "title": "Tiramisu",
+      "description": "An Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cheese.",
+      "ingredients": ["ladyfingers", "mascarpone cheese", "coffee"],
+      "steps": ["Soak ladyfingers in coffee", "Mix with mascarpone cheese", "Layer and serve"],
+      "createdAt": "2022-01-01",
+      "likes": 90,
+      "imageUrl": "https://i.pinimg.com/564x/59/d7/7a/59d77a8208f6d29032e7f56c406c68dd.jpg"
+    },
+    {
+      "_id": "ObjectId2",
+      "author": "UserId2",
+      "title": "Caramel Cheesecake",
+      "description": "Creamy cheesecake with a caramel swirl topping, baked to perfection.",
+      "ingredients": ["graham cracker crust", "cream cheese", "caramel sauce"],
+      "steps": ["Preheat oven", "Mix crust and bake", "Mix cheesecake and bake", "Top with caramel sauce"],
+      "createdAt": "2022-01-05",
+      "likes": 120,
+      "imageUrl": "https://i.pinimg.com/564x/ef/e3/be/efe3be4eeff6875f43731dce0a7504f1.jpg"
+    },
+    {
+      "_id": "ObjectId3",
+      "author": "UserId3",
+      "title": "Cold Coffee",
+      "description": "A chilled coffee drink with milk, ice, and a hint of sweetness.",
+      "ingredients": ["coffee", "milk", "ice"],
+      "steps": ["Brew coffee", "Chill in refrigerator", "Serve over ice with milk"],
+      "createdAt": "2022-01-10",
+      "likes": 80,
+      "imageUrl": "https://i.pinimg.com/564x/d7/76/bb/d776bbbd98c1301a9d814769743d501d.jpg"
+    },
+    {
+      "_id": "ObjectId4",
+      "author": "UserId4",
+      "title": "Strawberry Cheesecake",
+      "description": "Cheesecake topped with fresh strawberries and a sweet glaze.",
+      "ingredients": ["graham cracker crust", "cream cheese", "strawberries", "sugar"],
+      "steps": ["Preheat oven", "Mix crust and bake", "Mix cheesecake and bake", "Top with strawberries and sugar"],
+      "createdAt": "2022-01-15",
+      "likes": 100,
+      "imageUrl": "https://i.pinimg.com/564x/e4/be/66/e4be661f33bf92f7a0060004e9a0bf85.jpg"
+    },
+    {
+      "_id": "ObjectId5",
+      "author": "UserId5",
+      "title": "Karak Chai",
+      "description": "Strong and flavorful tea with aromatic spices, served hot.",
+      "ingredients": ["black tea", "milk", "sugar", "spices"],
+      "steps": ["Steep tea", "Add milk and sugar", "Add spices to taste"],
+      "createdAt": "2022-01-20",
+      "likes": 70,
+      "imageUrl": "https://i.pinimg.com/564x/c3/b5/6d/c3b56d0fed74d7667292d5aa4486bc23.jpg"
+    },
+    {
+      "_id": "ObjectId6",
+      "author": "UserId6",
+      "title": "Ice Cream Sandwich",
+      "description": "A delicious treat with ice cream sandwiched between two cookies.",
+      "ingredients": ["ice cream", "cookies"],
+      "steps": ["Scoop ice cream", "Place between cookies"],
+      "createdAt": "2022-01-25",
+      "likes": 110,
+      "imageUrl": "https://i.pinimg.com/564x/4d/ab/55/4dab55890a10ef67393e170286e7bad8.jpg"
+    }
+  ]
+  
