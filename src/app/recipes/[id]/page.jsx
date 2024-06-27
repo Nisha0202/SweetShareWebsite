@@ -1,12 +1,12 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
 import { SlLike } from "react-icons/sl";
 
-const RecipeDetailPage = () => {
+const RecipeDetailPage = ({params}) => {
     const [recipes, setRecipes] = useState([]);
-    const pathname = usePathname();
-    const id = pathname.split('/').pop(); // Extract the ID from the pathname
+   
+    const id = params.id; // Extract the ID 
+
     useEffect(() => {
         fetch('/recipes.json')
             .then((response) => response.json())

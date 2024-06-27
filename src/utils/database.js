@@ -1,29 +1,27 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-let isConnected=false
+dotenv.config();
 
-const uri = `mongodb+srv://Admin:Admin0202@cluster0.5cua0xk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
-
-export const connectToDB=async()=>{
-    mongoose.set('strictQuery',true)
-
-    if(isConnected){
-        console.log("Mongo is already connected")
-        return
-    }else{
-        console.log("Mongo has failed connected")
-    }
-
-    try{
-        await mongoose.connect(uri)
-
-        isConnected=true
-        console.log("connected to mongodb")
-    }
-    catch(e){
-        console.log(e)
-    }
+let isConnected = false;
+const uri = `mongodb+srv://${process.env.S3_BUCKET}:${process.env.SECRET_KEY}@cluster0.5cua0xk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 
+export const connect = async () => {
+  mongoose.set('strictQuery', true);
 
-}
+  if (isConnected) {
+    console.log('MongoDB is already connected');
+    return;
+  }
+
+  try {
+    await mongoose.connect(uri);
+
+    isConnected = true;
+    console.log('Successfully connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+  }
+};
+
