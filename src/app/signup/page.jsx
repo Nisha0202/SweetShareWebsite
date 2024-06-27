@@ -14,10 +14,10 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-160px)] ">
+    <div className="flex justify-center items-center min-h-[calc(100vh-240px)] ">
       <div className=" p-8 rounded-md border-2 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-text">Sign Up</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='grid gap-3'>
           <div className="input-container">
             <input
               type="text"
@@ -48,7 +48,7 @@ export default function Signup() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 rounded placeholder-transparent "
+              className="w-full px-3 py-2 border rounded placeholder-transparent "
               placeholder="Password"
               required
             />

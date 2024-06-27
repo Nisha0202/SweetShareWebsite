@@ -13,17 +13,17 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-150px)]">
+    <div className="flex justify-center items-center min-h-[calc(100vh-240px)]">
       <div className="border-2 m-4 p-8 rounded-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-text">Login</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='grid gap-3'>
           <div className="input-container">
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2  rounded placeholder-transparent focus:ring-0"
+              className="w-full px-3 py-2 border rounded placeholder-transparent focus:ring-0"
               placeholder="Email"
               required
             />

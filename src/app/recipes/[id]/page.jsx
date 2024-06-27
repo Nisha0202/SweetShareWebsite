@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { SlLike } from "react-icons/sl";
@@ -8,7 +7,6 @@ const RecipeDetailPage = () => {
     const [recipes, setRecipes] = useState([]);
     const pathname = usePathname();
     const id = pathname.split('/').pop(); // Extract the ID from the pathname
-
     useEffect(() => {
         fetch('/recipes.json')
             .then((response) => response.json())
@@ -19,7 +17,6 @@ const RecipeDetailPage = () => {
     if (!recipe) {
         return <div>Recipe not found</div>;
     }
-
     return (
         <div className='p-4 max-w-[1200px] mx-auto min-h-[calc(100vh-150px)] mt-8'>
             <div className='flex justify-between items-center mb-8'>
@@ -28,7 +25,7 @@ const RecipeDetailPage = () => {
             </div>
 
             <div className='flex flex-col-reverse lg:flex-row justify-between gap-8 lg:gap-16 items-start'>
-               
+
                 <div className='flex flex-col gap-4 mt-4'>
                     <div>
                         <p className='font-semibold text-xl text-text mb-2'>Description</p>
@@ -50,8 +47,7 @@ const RecipeDetailPage = () => {
 
                 </div>
 
-
-{/* image */}
+                {/* image */}
                 <div>
                     <img src={recipe.imageUrl} alt={recipe.title} className='w-80 lg:w-96 h-80 lg:h-96 rounded-md lg:mb-0' />
                 </div>

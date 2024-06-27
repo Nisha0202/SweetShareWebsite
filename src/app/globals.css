@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 body {
-  
- 
+  margin: 0;
+  padding: 0;
+ box-sizing: border-box;
 }
 
 @layer utilities {
@@ -12,6 +13,12 @@ body {
     text-wrap: balance;
   }
 }
+
+
+.sawarabi{
+  font-family: "Sawarabi Gothic", sans-serif;
+}
+
 
 /* styles/globals.css */
 .input-container {

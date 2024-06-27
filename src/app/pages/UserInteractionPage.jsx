@@ -1,7 +1,7 @@
 // UserInteractionPage.js
 import React from 'react';
-import TopContributors from '../components/TopContributors';
-import MostFollowedChefs from '../components/MostFollowedChefs';
+import TopContributors from '../../components/TopContributors';
+import MostFollowedChefs from '../../components/MostFollowedChefs';
 
 const UserInteractionPage = () => {
   // Mock data

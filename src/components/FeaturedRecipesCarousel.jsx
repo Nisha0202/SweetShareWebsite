@@ -38,7 +38,7 @@ const [recipes, setRecipes] = useState([]);
   };
 
   return (
-    <div className='max-w-[1200px] mx-auto my-16 lg:my-24'>
+    <div className='max-w-[1200px] mx-auto mt-8 lg:mt-12 mb-16 lg:mb-24'>
       <Slider {...settings}>
         {recipes.map(recipe => (
           <div key={recipe._id}>

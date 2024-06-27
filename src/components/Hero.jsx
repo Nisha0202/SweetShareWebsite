@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-96">
+    <section className="relative w-full h-[400px]">
       {/* Video Background */}
       <video
         autoPlay
