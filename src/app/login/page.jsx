@@ -59,7 +59,7 @@ export default function Login() {
   
     confirmAlert({
       customUI: ({ onClose }) => (
-        <div className="min-w-80 p-4 flex flex-col gap-6 bg-white rounded-md border-2 shadow-md">
+        <div className="w-80 p-4 flex flex-col gap-6 bg-white rounded-md border-2 shadow-md">
           <h1 className="\ font-medium">{title}</h1>
           <p className="my-4 text-lg font-medium">{message}</p>
           <button className="btn rounded-md px-4 py-2 hover:bg-primary-dark" onClick={onClose}>

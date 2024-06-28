@@ -94,19 +94,37 @@ export default function Signup() {
   };
   
   
-
   const showAlert = (title, message) => {
+    console.log('Alert title:', title); // Add this line for debugging
+  
     confirmAlert({
-      title: title,
-      message: message,
-      buttons: [
-        {
-          label: 'OK',
-          onClick: () => { }
-        }
-      ]
+      customUI: ({ onClose }) => (
+        <div className="w-80 p-4 flex flex-col gap-6 bg-white rounded-md border-2 shadow-md">
+          <h1 className="\ font-medium">{title}</h1>
+          <p className="my-4 text-lg font-medium">{message}</p>
+          <button className="btn rounded-md px-4 py-2 hover:bg-primary-dark" onClick={onClose}>
+            OK
+          </button>
+        </div>
+      ),
+      closeOnEscape: true,
+      closeOnClickOutside: true,
+      willUnmount: () => {}
     });
   };
+
+  // const showAlert = (title, message) => {
+  //   confirmAlert({
+  //     title: title,
+  //     message: message,
+  //     buttons: [
+  //       {
+  //         label: 'OK',
+  //         onClick: () => { }
+  //       }
+  //     ]
+  //   });
+  // };
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-240px)]">

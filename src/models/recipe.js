@@ -1,6 +1,6 @@
 import { Schema, model, models } from 'mongoose';
 
-const recepieSchema = new Schema({
+const recipeSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: 'users',
@@ -47,15 +47,14 @@ const recepieSchema = new Schema({
   }
 });
 
-
-let Recepie;
+let Recipe;
 
 try {
   // Try to retrieve existing model to avoid OverwriteModelError
-  Recepie = models.recipes || model('recepies', recepieSchema);
+  Recipe = models.recipes || model('recipes', recipeSchema);
 } catch (error) {
   // If model retrieval fails (likely due to initial load), define new model
-  Recepie = model('recepies', recepieSchema);
+  Recipe = model('recipes', recipeSchema);
 }
 
-export default Recepie;
+export default Recipe;
