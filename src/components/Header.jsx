@@ -51,7 +51,6 @@ export default function Header() {
         });
     };
 
-
     const logout = async () => {
         try {
             await axios.get('/api/user/logout')
@@ -70,7 +69,7 @@ export default function Header() {
         confirmAlert({
           customUI: ({ onClose }) => (
             <div className="w-80 p-4 flex flex-col gap-6 bg-white rounded-md border-2 absolute top-8 right-5">
-              <h1 className="\ font-medium">{title}</h1>
+              <h1 className=" font-medium">{title}</h1>
               <p className="my-4 text-lg font-medium">{message}</p>
               <button className="btn rounded-md px-4 py-2 hover:bg-primary-dark" onClick={onClose}>
                 OK
@@ -118,7 +117,7 @@ export default function Header() {
             </nav>
             {loading &&
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-auto ">
-          <div className="loading loading-md text-black"></div>
+          <div className="loading loading-lg text-black"></div>
         </div>
       }
         </header>
