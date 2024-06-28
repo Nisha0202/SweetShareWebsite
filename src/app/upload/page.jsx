@@ -1,7 +1,7 @@
 "use client";
 // RecipeForm.js
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -15,9 +15,42 @@ const RecipeForm = () => {
   });
   const [currentStep, setCurrentStep] = useState(1);
 
-  const handleNext = () => {
-    setCurrentStep(currentStep + 1);
+  let maxName = 40, maxDesc = 240;
+
+  const [formError, setFormError] = useState(false); // State to track form completion
+
+  const [isNextDisabled, setIsNextDisabled] = useState(true); //disable button
+
+  const [isUploadDisabled, setIsUploadDisabled] = useState(true);
+
+  useEffect(() => {
+    validateForm();
+  }, [formData, currentStep]);
+
+
+  const validateForm = () => {
+    if (currentStep === 1) {
+      setIsNextDisabled(!formData.name || !formData.description);
+    } else if (currentStep === 2) {
+      setIsNextDisabled(formData.ingredients.length === 0);
+    } else if (currentStep === 3) {
+      setIsNextDisabled(formData.steps.length === 0);
+    } else if (currentStep === 4) {
+      setIsUploadDisabled(files.length === 0);
+    }
   };
+
+  const handleNext = () => {
+    if (!isNextDisabled) {
+      setCurrentStep(currentStep + 1);
+      setFormError(false); // Reset form error state
+    } else {
+      setFormError(true);
+    }
+  };
+
+
+
 
   const handlePrevious = () => {
     setCurrentStep(currentStep - 1);
@@ -25,7 +58,15 @@ const RecipeForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    if (name === 'name' && value.length <= maxName) {
+      setFormData({ ...formData, [name]: value });
+       if (formError) setFormError(false);
+    } else if (name === 'description' && value.length <= maxDesc) {
+      setFormData({ ...formData, [name]: value });
+      if (formError) setFormError(false);
+    }
+
+   
   };
 
   const fileInputRef = useRef(null); // useRef hook to reference file input element
@@ -104,22 +145,24 @@ const RecipeForm = () => {
               value={formData.name}
               onChange={handleInputChange}
               placeholder="Recipe Name"
-              className="input text-sm input-bordered w-full max-w-xs border rounded placeholder mb-4"
+              className="input text-sm input-bordered w-full max-w-xs border rounded placeholder mb-2"
             />
+             <p className="text-sm mb-4">{formData.name.length}/{maxName}</p>
 
             <textarea
               name="description"
               value={formData.description}
               onChange={handleInputChange}
               placeholder="Recipe Description"
-              className="textarea textarea-bordered textarea-md w-full max-w-xs border rounded-md placeholder mb-4"
-              rows="4" maxLength={200}
+              className="textarea textarea-bordered textarea-md w-full max-w-xs border rounded-md placeholder mb-2"
+              rows="3" 
             ></textarea>
+             <p className="text-sm mb-4">{formData.description.length}/{maxDesc}</p>
             <div className="flex mt-6 justify-between items-center absolute bottom-3 w-72">
               <Link href="/" className="text-primary font-medium">
                 Cancel
               </Link>
-              <button onClick={handleNext} className="text-secondary font-bold py-2 px-4 rounded hover:bg-accent">
+              <button onClick={handleNext} className={`text-secondary font-bold py-2 px-4 rounded ${isNextDisabled ? 'text-gray-400' : 'hover:bg-accent'}`} disabled={isNextDisabled}>
                 Next
               </button>
             </div>
@@ -139,7 +182,7 @@ const RecipeForm = () => {
             </button>
             <div className="flex justify-between absolute bottom-3 w-72 items-center">
               <button className='text-primary font-medium' onClick={handlePrevious}>Previous</button>
-              <button onClick={handleNext} className="text-secondary font-bold py-2 px-4 rounded hover:bg-accent">
+              <button onClick={handleNext} className={`text-secondary font-bold py-2 px-4 rounded ${isNextDisabled ? 'text-gray-400' : 'hover:bg-accent'}`} disabled={isNextDisabled}>
                 Next
               </button>
             </div>
@@ -159,7 +202,7 @@ const RecipeForm = () => {
             </button>
             <div className="flex justify-between absolute bottom-3 w-72 items-center">
               <button onClick={handlePrevious} className='text-primary font-medium'>Previous</button>
-              <button onClick={handleNext} className="text-secondary font-bold py-2 px-4 rounded hover:bg-accent">
+              <button onClick={handleNext} className={`text-secondary font-bold py-2 px-4 rounded ${isNextDisabled ? 'text-gray-400' : 'hover:bg-accent'}`} disabled={isNextDisabled}>
                 Next
               </button>
             </div>
@@ -196,13 +239,17 @@ const RecipeForm = () => {
 
             <div className="flex justify-between absolute bottom-3 w-72 items-center">
               <button onClick={handlePrevious} className='text-primary font-medium'>Previous</button>
-              <button className="bg-secondary font-bold py-2 px-4 rounded hover:bg-accent">
+              <button
+                className={`font-bold py-2 px-4 rounded ${isUploadDisabled ? 'bg-gray-200' : 'hover:bg-accent bg-secondary '}`}
+                disabled={isUploadDisabled}
+              >
                 Upload
               </button>
             </div>
           </div>
         )}
       </div>
+
     </div>
   );
 };
