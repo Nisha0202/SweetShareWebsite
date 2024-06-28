@@ -2,7 +2,7 @@ import { connect } from '@/utils/database';
 import User from '@/models/user';
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcrypt';
-
+const jwt = require('jsonwebtoken');
 connect();
 
 export async function POST(req) {
@@ -23,11 +23,27 @@ export async function POST(req) {
     if (!validPassword){
         return NextResponse.json({ message: "Wrong Credientials.", success: false}, {status: 400});
     }
-
-
-    return NextResponse.json({ message: "User Logged In", success: true });
-  } catch (error) {
-    // console.log(error);
-    return NextResponse.json({ error: "Internal Server Error. Please try again." }, { status: 500 });
+            //create token data
+            const tokenData = {
+              id: user._id,
+              username: user.username,
+              email: user.email
+          }
+          //create token
+          const token = await jwt.sign(tokenData, process.env.TOKEN, {expiresIn: "7d"});
+  
+          const response = NextResponse.json({
+              message: "Login successful",
+              success: true,
+          })
+          response.cookies.set("token", token, {
+              httpOnly: true, 
+              
+          })
+          return response;
+  
+      } catch (error) {
+          return NextResponse.json({error: error.message}, {status: 500})
+      }
   }
-}
+

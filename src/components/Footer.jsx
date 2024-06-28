@@ -3,12 +3,12 @@ import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-400 py-8">
-    <div className="max-w-[1200px] mx-auto">
+    <footer className="bg-gray-400 py-8 ">
+    <div className="max-w-[1200px] mx-auto px-4">
       <div className="flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0 lg:w-1/3 place-content-center lg:place-content-start">
-          <h1 className="text-xl font-bold">SweetShare</h1>
-          <p className="text-sm mt-2">Sharing delicious recipes with the world!</p>
+          <h1 className="text-xl font-bold text-center lg:text-start">SweetShare</h1>
+          <p className="text-sm mt-2 text-center lg:text-start">Sharing delicious recipes with the world!</p>
         </div>
         <div className="flex flex-col lg:flex-row gap-4 place-content-center items-center  lg:w-1/3">
           <Link href="/">

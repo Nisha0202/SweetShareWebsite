@@ -4,6 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -11,6 +12,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false); // State to manage loading state
 
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -36,6 +38,7 @@ export default function Login() {
         setEmail('');
         setError('');
         setPassword('');
+        router.push("/profile");
       } else {
         setLoading(false);
         // Handle other response statuses or errors

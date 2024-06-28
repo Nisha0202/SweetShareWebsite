@@ -18,8 +18,8 @@ export default function Profile() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center p-4">
-      <div className="w-full max-w-2xl p-6 rounded-md border-2">
+    <div className="flex flex-col items-center p-4 min-h-[calc(100vh-240px)]">
+      <div className="w-full max-w-[1200px] p-6 rounded-md border-2">
         <h2 className="text-2xl font-bold mb-4 text-center">Profile</h2>
         <div className="flex flex-col items-center mb-6">
           <div className="text-lg font-medium mb-2">Username: {user.username}</div>
@@ -30,7 +30,7 @@ export default function Profile() {
         </div>
         <div className="w-full">
           <h3 className="text-xl font-bold mb-4">Your Recipes</h3>
-          <div className="grid gap-4">
+          <div className="flex flex-wrap gap-4">
             {recipes.map(recipe => (
               <div key={recipe.id} className="p-4 border rounded-md">
                 <h4 className="text-lg font-bold">{recipe.title}</h4>
