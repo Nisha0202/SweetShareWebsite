@@ -48,24 +48,31 @@ export default function Login() {
     } catch (error) {
       setLoading(false);
       // Handle network or other errors
-      showAlert('Error', 'There was an error loggin inp.');
+      showAlert('Error', 'There was an error loggin in!');
       setError('');
       console.error('Error logging in:', error);
     }
   };
 
   const showAlert = (title, message) => {
+    console.log('Alert title:', title); // Add this line for debugging
+  
     confirmAlert({
-      title: title,
-      message: message,
-      buttons: [
-        {
-          label: 'OK',
-          onClick: () => { }
-        }
-      ]
+      customUI: ({ onClose }) => (
+        <div className="min-w-80 p-4 flex flex-col gap-6 bg-white rounded-md border-2 shadow-md">
+          <h1 className="\ font-medium">{title}</h1>
+          <p className="my-4 text-lg font-medium">{message}</p>
+          <button className="btn rounded-md px-4 py-2 hover:bg-primary-dark" onClick={onClose}>
+            OK
+          </button>
+        </div>
+      ),
+      closeOnEscape: true,
+      closeOnClickOutside: true,
+      willUnmount: () => {}
     });
   };
+  
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-240px)]">
@@ -80,7 +87,7 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-3 py-2 border rounded placeholder-transparent focus:ring-0"
               placeholder="Email"
-              required
+            
             />
             <label htmlFor="email">Email</label>
           </div>
@@ -92,7 +99,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-3 py-2 border rounded placeholder-transparent"
               placeholder="Password"
-              required
+            
             />
             <label htmlFor="password">Password</label>
           </div>

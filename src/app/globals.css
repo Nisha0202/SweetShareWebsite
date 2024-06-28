@@ -45,3 +45,9 @@ body {
   color: #3b82f6; /* Tailwind blue-500 */
 }
 
+.custom-ui {
+  width: 300px; /* Adjust width as needed */
+  padding: 16px;
+  border-radius: 8px;
+}
+
