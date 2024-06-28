@@ -13,13 +13,14 @@ export default function Signup() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  let msg = '';
   
   const checkEmailExists = async (email) => {
     try {
       const response = await axios.get(`/api/user/signup/email?email=${email}`);
       return response.data.exists;
     } catch (error) {
-      console.error('Error checking email:', error);
       throw new Error('Error checking email');
     }
   };
@@ -41,10 +42,18 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+
+    if(!email || !username || password.length === 0){
+
+      setLoading(false);
+      setError('Please fill all the fields');
+      return;
+    }
   
     if (password.length < 5) {
       setError(true);
       setLoading(false);
+      setError('Password is too short');
       return;
     }
   
@@ -54,6 +63,7 @@ export default function Signup() {
         if (emailExists) {
           setLoading(false);
           showAlert('Error', 'You have signed up before, please Log in.');
+          router.push('/login'); 
           return Promise.reject('Email already exists');
         }
   
@@ -61,7 +71,6 @@ export default function Signup() {
         return signupUser(username, email, password);
       })
       .then((response) => {
-        console.log('Server response:', response);
   
         if (response.status === 200) {
           setLoading(false);
@@ -113,7 +122,7 @@ export default function Signup() {
               onChange={(e) => setUsername(e.target.value)}
               className="w-full px-3 py-2 border rounded placeholder-transparent"
               placeholder="Username"
-              required
+           
             />
             <label htmlFor="username">Username</label>
           </div>
@@ -125,7 +134,7 @@ export default function Signup() {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-3 py-2 border rounded placeholder-transparent"
               placeholder="Email"
-              required
+         
             />
             <label htmlFor="email">Email</label>
           </div>
@@ -137,7 +146,7 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-3 py-2 border rounded placeholder-transparent"
               placeholder="Password"
-              required
+             
             />
             <label htmlFor="password">Password</label>
           </div>
@@ -148,7 +157,7 @@ export default function Signup() {
             Sign Up
           </button>
           {error &&
-            <div className='text-red-600 text-sm font-medium'>Password is too short</div>
+            <div className='text-red-600 text-sm font-medium'>{error}</div>
           }
         </form>
         <div className='text-text m-4 text-center'>Already User? <Link href={"/login"} className='text-primary font-bold'>Log In</Link></div>

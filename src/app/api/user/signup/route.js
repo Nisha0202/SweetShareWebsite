@@ -9,13 +9,6 @@ export async function POST(req) {
     try {
       const body = await req.json();
       const { username, email, password } = body;
-  
-      // Check if user exists
-      // const user = await User.findOne({ email });
-      // if (user) {
-      //   return NextResponse.json({ message: "User Already Exists", success: false }, { status: 409 });
-      // }
-  
       // Hash password
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
