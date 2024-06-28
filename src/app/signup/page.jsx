@@ -1,47 +1,91 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
-import axios from 'axios'; // Import Axios
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import CSS
+import axios from 'axios';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { useRouter } from 'next/navigation';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
-  const [Loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    if (password.length < 5) {
-      setError(true);
-      return;
-    }
-
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  
+  const checkEmailExists = async (email) => {
     try {
-      // Make a POST request to your server domain (adjust the URL accordingly)
+      const response = await axios.get(`/api/user/signup/email?email=${email}`);
+      return response.data.exists;
+    } catch (error) {
+      console.error('Error checking email:', error);
+      throw new Error('Error checking email');
+    }
+  };
+
+  const signupUser = async (username, email, password) => {
+    try {
       const response = await axios.post('/api/user/signup', {
         username,
         email,
         password,
       });
-      console.log('User signed up:', response.data); // Log the response data
-      setLoading(false);
-      showAlert('Success', 'You have signed up successfully!');
-      setUsername('');
-      setEmail('');
-      setPassword('');
-      
-
+      return response;
     } catch (error) {
-      setLoading(false);
       console.error('Error signing up:', error);
-      showAlert('Error', 'There was an error signing up. Please try again.');
-      setError(false);
+      throw new Error('Error signing up');
     }
   };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+  
+    if (password.length < 5) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
+  
+    // Check if email exists
+    checkEmailExists(email)
+      .then((emailExists) => {
+        if (emailExists) {
+          setLoading(false);
+          showAlert('Error', 'You have signed up before, please Log in.');
+          return Promise.reject('Email already exists');
+        }
+  
+        // Proceed to sign up
+        return signupUser(username, email, password);
+      })
+      .then((response) => {
+        console.log('Server response:', response);
+  
+        if (response.status === 200) {
+          setLoading(false);
+          showAlert('Success', 'You have signed up successfully!');
+          setUsername('');
+          setEmail('');
+          setPassword('');
+          setError(false);
+        } else {
+          setLoading(false);
+          showAlert('Error', 'There was an error signing up. Please try again.');
+          setError(false);
+        }
+      })
+      .catch((error) => {
+        if (error !== 'Email already exists') {
+          setLoading(false);
+          showAlert('Error', 'There was an error signing up. Please try again.');
+          setError(false);
+        }
+      });
+  };
+  
+  
 
   const showAlert = (title, message) => {
     confirmAlert({
@@ -50,15 +94,15 @@ export default function Signup() {
       buttons: [
         {
           label: 'OK',
-          onClick: () => {}
+          onClick: () => { }
         }
       ]
     });
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-240px)] absolute z-10">
-      <div className=" p-8 rounded-md border-2 w-full max-w-md">
+    <div className="flex justify-center items-center min-h-[calc(100vh-240px)]">
+      <div className="p-8 rounded-md border-2 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-text">Sign Up</h2>
         <form onSubmit={handleSubmit} className='grid gap-3'>
           <div className="input-container">
@@ -91,7 +135,7 @@ export default function Signup() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border rounded placeholder-transparent "
+              className="w-full px-3 py-2 border rounded placeholder-transparent"
               placeholder="Password"
               required
             />
@@ -107,13 +151,14 @@ export default function Signup() {
             <div className='text-red-600 text-sm font-medium'>Password is too short</div>
           }
         </form>
-        <div className='text-text m-4 text-center'>Already User? <Link href={"/login"} className='text-primary font-bold'>Log In</Link>  </div>
+        <div className='text-text m-4 text-center'>Already User? <Link href={"/login"} className='text-primary font-bold'>Log In</Link></div>
       </div>
 
-      {Loading &&
-        <span className="loading loading-spinner loading-md relative z-20 top-1/2 left-1/2"></span>
+      {loading &&
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-auto ">
+          <div className="loading loading-md text-black"></div>
+        </div>
       }
-    
     </div>
   );
 }

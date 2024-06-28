@@ -3,10 +3,10 @@ import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-text  py-8">
+    <footer className="bg-gray-400 py-8">
     <div className="max-w-[1200px] mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-center">
-        <div className="mb-4 md:mb-0 lg:w-1/3">
+        <div className="mb-4 md:mb-0 lg:w-1/3 place-content-center lg:place-content-start">
           <h1 className="text-xl font-bold">SweetShare</h1>
           <p className="text-sm mt-2">Sharing delicious recipes with the world!</p>
         </div>

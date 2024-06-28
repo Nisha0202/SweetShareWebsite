@@ -28,5 +28,12 @@ const userSchema = new Schema({
     verifyTokenExpiry: Date,
 })
 
-const User = models.user || model('user',userSchema);
+let User;
+try {
+    // Try to retrieve existing model to avoid OverwriteModelError
+    User = models.users || model('users', userSchema);
+} catch (error) {
+    // If model retrieval fails (likely due to initial load), define new model
+    User = model('users', userSchema);
+}
 export default  User;

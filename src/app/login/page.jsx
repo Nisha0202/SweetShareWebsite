@@ -1,15 +1,60 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
+import axios from 'axios';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const [loading, setLoading] = useState(false); // State to manage loading state
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('User logged in:', { email, password });
+    setLoading(true);
+
+    try {
+      // Send login request to backend
+      const response = await axios.post('/api/user/login', {
+        email,
+        password,
+      });
+
+      console.log('Server response:', response.data);
+
+      // Handle success response
+      if (response.status === 200 && response.data.success) {
+        setLoading(false);
+        // Optionally handle successful login actions (e.g., redirect)
+        showAlert('User logged in successfully!');
+        setEmail('');
+        setPassword('');
+      } else {
+        setLoading(false);
+        // Handle other response statuses or errors
+         showAlert('Login failed:', response.data.error || 'Unexpected error');
+      }
+    } catch (error) {
+      setLoading(false);
+      // Handle network or other errors
+      showAlert('Error', 'There was an error loggin inp.');
+      console.error('Error logging in:', error);
+    }
+  };
+
+  const showAlert = (title, message) => {
+    confirmAlert({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          label: 'OK',
+          onClick: () => { }
+        }
+      ]
+    });
   };
 
   return (
@@ -50,6 +95,11 @@ export default function Login() {
         </form>
         <div className='text-text m-4 text-center'>New User? <Link href={"/signup"} className='text-primary font-bold'>Sign Up</Link></div>
       </div>
+      {loading &&
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-auto ">
+          <div className="loading loading-md text-black"></div>
+        </div>
+      }
     </div>
   );
 }
