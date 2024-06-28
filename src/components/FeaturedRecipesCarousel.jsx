@@ -41,10 +41,10 @@ const [recipes, setRecipes] = useState([]);
     <div className='max-w-[1200px] mx-auto mt-8 lg:mt-12 mb-16 lg:mb-24'>
       <Slider {...settings}>
         {recipes.map(recipe => (
-          <div key={recipe._id}>
-            <Link href={`/recipes/${recipe._id}`}>
+          <div key={recipe._id} className='border-0 outline-none'>
+            <Link href={`/recipes/${recipe._id}`} legacyBehavior>
                 <img
-                  className="carousel-image rounded-md border-2  hover:opacity-70"
+                  className="carousel-image rounded-md border-2 outline-none hover:opacity-70"
                   src={recipe.imageUrl}
                   alt={recipe.title}
                 />
