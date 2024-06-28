@@ -8,12 +8,18 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false); // State to manage loading state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    if(!email || password.length === 0){
+      setLoading(false);
+      setError('Please fill all the fields');
+      return;
+    }
 
     try {
       // Send login request to backend
@@ -22,24 +28,25 @@ export default function Login() {
         password,
       });
 
-      console.log('Server response:', response.data);
-
       // Handle success response
       if (response.status === 200 && response.data.success) {
         setLoading(false);
         // Optionally handle successful login actions (e.g., redirect)
         showAlert('User logged in successfully!');
         setEmail('');
+        setError('');
         setPassword('');
       } else {
         setLoading(false);
         // Handle other response statuses or errors
          showAlert('Login failed:', response.data.error || 'Unexpected error');
+         setError('');
       }
     } catch (error) {
       setLoading(false);
       // Handle network or other errors
       showAlert('Error', 'There was an error loggin inp.');
+      setError('');
       console.error('Error logging in:', error);
     }
   };
@@ -92,6 +99,10 @@ export default function Login() {
           >
             Login
           </button>
+
+          {error &&
+            <div className='text-red-600 text-sm font-medium'>{error}</div>
+          } 
         </form>
         <div className='text-text m-4 text-center'>New User? <Link href={"/signup"} className='text-primary font-bold'>Sign Up</Link></div>
       </div>

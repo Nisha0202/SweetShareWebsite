@@ -22,6 +22,22 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    createdAt: {
+        type: String,
+        default: () => {
+            const now = new Date();
+            const options = {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true // Use 12-hour format with AM/PM
+            };
+            return now.toLocaleDateString('en-US', options);
+        }
+    },
+
     forgetPasswordToken: String,
     forgetPasswordTokenExpiry: Date,
     verifyToken: String,

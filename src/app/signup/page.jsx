@@ -14,7 +14,6 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  let msg = '';
   
   const checkEmailExists = async (email) => {
     try {
