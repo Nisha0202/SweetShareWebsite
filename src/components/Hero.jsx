@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Hero = () => {
@@ -19,8 +20,8 @@ const Hero = () => {
       <div className="relative w-full h-full flex items-center justify-center text-center text-white">
         <div>
           <h1 className="text-4xl font-bold drop-shadow-xl">Welcome to SweetShare</h1>
-          <p className="mt-4 drop-shadow-lg">Discover and share the best dessert recipes from around the world.</p>
-          <button className="mt-4 bg-primary p-2 rounded-md">Explore Recipes</button>
+          <p className="my-4 drop-shadow-lg">Discover and share the best dessert recipes from around the world.</p>
+          <Link href={'/recipes'} className=" bg-primary p-2 rounded-md">Explore Recipes</Link>
         </div>
       </div>
     </section>

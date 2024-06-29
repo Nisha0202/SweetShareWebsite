@@ -10,12 +10,12 @@
 
 
 //when image upload the image will show on screen 
-// profile
 // dynamic header
 //theme
 //recepie data save
 // like button
 // most liked dishes author
+// edite profile
 
 
 

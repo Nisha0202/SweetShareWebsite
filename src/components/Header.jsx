@@ -122,7 +122,6 @@ export default function Header() {
             <nav className={`flex-col md:flex-row ${menuOpen ? 'flex' : 'hidden'} md:flex md:items-center md:space-x-4`}>
                 <ul className="flex mx-auto flex-col text-text text-center md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-4 md:mb-0">
                     <li><Link href="/" className={`hover:underline ${isActive('/') ? 'text-black font-medium' : ''}`}>Home</Link></li>
-                    <li><Link href="/recipes" className={`hover:underline ${isActive('/recipes') ? 'text-black font-medium ' : ''}`}>Recipes</Link></li>
                     <li><Link href="/upload" className={`hover:underline ${isActive('/upload') ? 'text-black font-medium' : ''}`}>Upload</Link></li>
                     <li><Link href="/profile" className={`hover:underline ${isActive('/profile') ? 'text-black font-medium ' : ''}`}>Profile</Link></li>
                 </ul>

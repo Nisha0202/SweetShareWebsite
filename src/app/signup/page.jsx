@@ -62,7 +62,7 @@ export default function Signup() {
         if (emailExists) {
           setLoading(false);
           showAlert('Error', 'You have signed up before, please Log in.');
-          router.push('/login'); 
+          router.push('/'); 
           return Promise.reject('Email already exists');
         }
   
