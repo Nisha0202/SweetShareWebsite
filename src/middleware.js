@@ -20,11 +20,10 @@ export function middleware(request) {
 
 export const config = {
   matcher: [
-    '/',
     '/profile',
     '/login',
     '/signup',
-    '/recipes/:path*',
+    '/recipes/:id',
     '/verifyemail',
     '/upload'
   ]

@@ -3,9 +3,12 @@ import User from '@/models/user';
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcrypt';
 const jwt = require('jsonwebtoken');
+
 connect();
 
 export async function POST(req) {
+
+    
   try {
     const body = await req.json();
     const {email, password } = body;
@@ -30,7 +33,7 @@ export async function POST(req) {
               email: user.email
           }
           //create token
-          const token = await jwt.sign(tokenData, process.env.TOKEN, {expiresIn: "7d"});
+          const token = jwt.sign(tokenData, process.env.TOKEN, { expiresIn: "7d" });
   
           const response = NextResponse.json({
               message: "Login successful",
@@ -43,6 +46,7 @@ export async function POST(req) {
           return response;
   
       } catch (error) {
+        console.log('jo');
           return NextResponse.json({error: error.message}, {status: 500})
       }
   }

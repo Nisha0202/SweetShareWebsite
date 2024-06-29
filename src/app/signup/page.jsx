@@ -78,6 +78,7 @@ export default function Signup() {
           setEmail('');
           setPassword('');
           setError(false);
+          router.push('/login');
         } else {
           setLoading(false);
           showAlert('Error', 'There was an error signing up. Please try again.');

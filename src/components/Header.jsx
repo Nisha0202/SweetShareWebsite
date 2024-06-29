@@ -51,36 +51,57 @@ export default function Header() {
         });
     };
 
+
     const logout = async () => {
-        try {
-            await axios.get('/api/user/logout')
-            showAlert('Success', 'Logout successful!');
-            setLoading(false)
-            router.push('/');
-        } catch (error) {
-            console.log(error.message);
-            showAlert('Error', error.message);
-            setLoading(false)
-        }
+
+        axios.get('/api/user/logout')
+            .then(response => {
+                // Handle the JSON response here
+                console.log(response.data);
+                setLoading(false)
+                router.push('/');
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                showAlert('Error', error.message);
+                setLoading(false)
+            });
+
+
     }
+
+    // const logout = async () => {
+    //     try {
+    //         await axios.get('/api/user/logout')
+
+
+    //         showAlert('Success', 'Logout successful!');
+    //         setLoading(false)
+    //         router.push('/');
+    //     } catch (error) {
+    //         console.log(error.message);
+    //         showAlert('Error', error.message);
+    //         setLoading(false)
+    //     }
+    // }
 
     const showAlert = (title, message) => {
         console.log('Alert title:', title); // Add this line for debugging
         confirmAlert({
-          customUI: ({ onClose }) => (
-            <div className="w-80 p-4 flex flex-col gap-6 bg-white rounded-md border-2 absolute top-8 right-5">
-              <h1 className=" font-medium">{title}</h1>
-              <p className="my-4 text-lg font-medium">{message}</p>
-              <button className="btn rounded-md px-4 py-2 hover:bg-primary-dark" onClick={onClose}>
-                OK
-              </button>
-            </div>
-          ),
-          closeOnEscape: true,
-          closeOnClickOutside: true,
-          willUnmount: () => {}
+            customUI: ({ onClose }) => (
+                <div className="w-80 p-4 flex flex-col gap-6 bg-white rounded-md border-2 absolute top-8 right-5">
+                    <h1 className=" font-medium">{title}</h1>
+                    <p className="my-4 text-lg font-medium">{message}</p>
+                    <button className="btn rounded-md px-4 py-2 hover:bg-primary-dark" onClick={onClose}>
+                        OK
+                    </button>
+                </div>
+            ),
+            closeOnEscape: true,
+            closeOnClickOutside: true,
+            willUnmount: () => { }
         });
-      };
+    };
 
     return (
         <header className="flex flex-col md:flex-row justify-between items-center p-4 max-w-[1200px] mx-auto">
@@ -116,10 +137,10 @@ export default function Header() {
                 </div>
             </nav>
             {loading &&
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-auto ">
-          <div className="loading loading-lg text-black"></div>
-        </div>
-      }
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-auto ">
+                    <div className="loading loading-lg text-black"></div>
+                </div>
+            }
         </header>
     );
 }
