@@ -20,7 +20,7 @@ const Hero = () => {
       <div className="relative w-full h-full flex items-center justify-center text-center text-white">
         <div>
           <h1 className="text-4xl font-bold drop-shadow-xl">Welcome to SweetShare</h1>
-          <p className="my-4 drop-shadow-lg">Discover and share the best dessert recipes from around the world.</p>
+          <p className="mt-4 mb-6 drop-shadow-lg">Discover and share the best dessert recipes from around the world.</p>
           <Link href={'/recipes'} className=" bg-primary p-2 rounded-md">Explore Recipes</Link>
         </div>
       </div>

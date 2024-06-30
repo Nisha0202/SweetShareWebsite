@@ -7,6 +7,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 export default function Profile() {
   const [user, setUser] = useState(null); // Initialize user as null
 
+  const [loading, setLoading] = useState(true); // State to track loading status
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -14,11 +16,13 @@ export default function Profile() {
         setUser(res.data.data); // Assuming res.data contains the user object
       } catch (error) {
         console.error('Error fetching user details:', error.message);
+      } finally {
+        setLoading(false); // Set loading to false regardless of success or failure
       }
     };
-
     fetchData();
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []); //this effect runs once on mount
+
 
   return (
     <div className="flex flex-col items-center p-4 min-h-[calc(100vh-240px)]">
@@ -47,6 +51,11 @@ export default function Profile() {
             ))}
           </div>
         </div> */}
+              {loading && (
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-auto ">
+          <div className="loading loading-md text-black"></div>
+        </div>
+      )}
       </div>
     </div>
   );

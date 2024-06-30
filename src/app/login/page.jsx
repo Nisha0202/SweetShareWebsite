@@ -5,6 +5,8 @@ import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useAppContext } from '@/context';
+
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -15,6 +17,7 @@ export default function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const nextPath = searchParams.get('next') || '/';
+  const { setUser } = useAppContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,8 +31,8 @@ export default function Login() {
 
     try {
       const response = await axios.post('/api/user/login', { email, password });
-
       if (response.status === 200 && response.data.success) {
+        setUser(response.data.data);
         setLoading(false);
         showAlert('Success', 'User logged in successfully!');
         setEmail('');

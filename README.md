@@ -10,12 +10,17 @@
 
 
 //when image upload the image will show on screen 
-// dynamic header
+// dynamic header -= current
 //theme
 //recepie data save
 // like button
 // most liked dishes author
 // edite profile
+
+1. token generates when sign up or login 
+2. profile
+3. private routes
+4. multi step form
 
 
 

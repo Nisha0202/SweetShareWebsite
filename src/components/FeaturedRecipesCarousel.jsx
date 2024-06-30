@@ -51,7 +51,7 @@ const [recipes, setRecipes] = useState([]);
             </Link>
             <div className="carousel-content grid place-content-center">
               <h3 className='font-bold text-lg text-text'>{recipe.title}</h3>
-              <p className='text-wrap max-w-96 px-4'>{recipe.description}</p>
+              <p className='text-wrap min-w-80 px-4'>{recipe.description}</p>
             </div>
           </div>
         ))}
