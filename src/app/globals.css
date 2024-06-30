@@ -41,7 +41,9 @@ body {
 
 .input-container input:focus + label,
 .input-container input:not(:placeholder-shown) + label {
-  transform: translate(0, -1rem) scale(0.75);
+  background-color: white;
+  margin: 0px 4px;
+  transform: translate(0, -0.6rem) scale(0.75);
   color: #3b82f6; /* Tailwind blue-500 */
 }
 

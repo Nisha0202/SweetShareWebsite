@@ -5,6 +5,7 @@ import axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useRouter } from 'next/navigation';
+import { useAppContext } from '@/context';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
@@ -13,7 +14,7 @@ export default function Signup() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  const { setUser } = useAppContext();
   
   const checkEmailExists = async (email) => {
     try {
@@ -31,6 +32,7 @@ export default function Signup() {
         email,
         password,
       });
+     
       return response;
     } catch (error) {
       console.error('Error signing up:', error);
@@ -73,12 +75,13 @@ export default function Signup() {
   
         if (response.status === 200) {
           setLoading(false);
+          setUser(response.data.data);
           showAlert('Success', 'You have signed up successfully!');
           setUsername('');
           setEmail('');
           setPassword('');
           setError(false);
-          router.push('/login');
+          router.push('/');
         } else {
           setLoading(false);
           showAlert('Error', 'There was an error signing up. Please try again.');

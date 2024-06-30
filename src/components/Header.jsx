@@ -55,9 +55,8 @@ export default function Header() {
   const logout = async () => {
     try {
       await axios.get('/api/user/logout');
-      setLoading(false);
-      user(null)
-      setUser(null);
+      setUser(null); // Update user state first
+      setLoading(false); // Then update loading state
       router.push('/');
     } catch (error) {
       console.error('Error logging out:', error);
