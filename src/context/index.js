@@ -9,23 +9,24 @@ export const AppWrapper = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const fetchCurrentUser = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get('/api/currentprofile');
+      setUser(response.data.data);
+    } catch (error) {
+      console.error('Error fetching user details:', error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const response = await axios.get('/api/currentprofile');
-        setUser(response.data.data);
-        
-      } catch (error) {
-        console.error('Error fetching user details:', error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchCurrentUser();
-  }, [user]);
+  }, []);
 
   return (
-    <AppContext.Provider value={{ user, setUser, loading, setLoading }}>
+    <AppContext.Provider value={{ user, setUser, loading, setLoading, fetchCurrentUser }}>
       {children}
     </AppContext.Provider>
   );

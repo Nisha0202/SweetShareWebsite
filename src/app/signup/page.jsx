@@ -14,7 +14,7 @@ export default function Signup() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { setUser } = useAppContext();
+  const { setUser, fetchCurrentUser } = useAppContext();
   
   const checkEmailExists = async (email) => {
     try {
@@ -76,6 +76,7 @@ export default function Signup() {
         if (response.status === 200) {
           setLoading(false);
           setUser(response.data.data);
+          fetchCurrentUser();
           showAlert('Success', 'You have signed up successfully!');
           setUsername('');
           setEmail('');

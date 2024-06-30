@@ -13,12 +13,17 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  const { user, setUser, loading, setLoading } = useAppContext();
+  const { user, setUser, loading, setLoading, fetchCurrentUser } = useAppContext();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  useEffect(() => {
+    // Fetch current user on mount
+    fetchCurrentUser();
+  }, []);
+  
   const isActive = (path) => pathname === path;
 
   const confirmLogout = () => {
@@ -56,6 +61,7 @@ export default function Header() {
     try {
       await axios.get('/api/user/logout');
       setUser(null); // Update user state first
+      fetchCurrentUser();
       setLoading(false); // Then update loading state
       router.push('/');
     } catch (error) {

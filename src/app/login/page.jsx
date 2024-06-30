@@ -17,7 +17,7 @@ export default function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const nextPath = searchParams.get('next') || '/';
-  const { setUser } = useAppContext();
+  const { setUser, fetchCurrentUser } = useAppContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +33,7 @@ export default function Login() {
       const response = await axios.post('/api/user/login', { email, password });
       if (response.status === 200 && response.data.success) {
         setUser(response.data.data);
+        fetchCurrentUser();
         setLoading(false);
         showAlert('Success', 'User logged in successfully!');
         setEmail('');
