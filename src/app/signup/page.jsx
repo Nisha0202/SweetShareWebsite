@@ -77,7 +77,7 @@ export default function Signup() {
           setLoading(false);
           setUser(response.data.data);
           fetchCurrentUser();
-          showAlert('Success', 'You have signed up successfully!');
+          showAlert('Success', 'You have signed up successfully! Plese check your Email to verify your account. Only verify users can post recepies');
           setUsername('');
           setEmail('');
           setPassword('');
@@ -98,14 +98,16 @@ export default function Signup() {
       });
   };
   
-  
+
   const showAlert = (title, message) => {
-    console.log('Alert title:', title); // Add this line for debugging
+    console.log('Alert title:', title); 
+  
+    const titleColor = title === 'Success'? 'text-secondary' : 'text-red-500';
   
     confirmAlert({
       customUI: ({ onClose }) => (
         <div className="w-80 p-4 flex flex-col gap-6 bg-white rounded-md border-2 shadow-md">
-          <h1 className="\ font-medium">{title}</h1>
+          <h1 className={`font-medium ${titleColor}`}>{title}</h1>
           <p className="my-4 text-lg font-medium">{message}</p>
           <button className="btn rounded-md px-4 py-2 hover:bg-primary-dark" onClick={onClose}>
             OK
@@ -117,6 +119,7 @@ export default function Signup() {
       willUnmount: () => {}
     });
   };
+  
 
   // const showAlert = (title, message) => {
   //   confirmAlert({

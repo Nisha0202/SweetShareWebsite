@@ -148,3 +148,12 @@ RecipeShare is a community-driven platform where users can share, discover, and 
 - Adding recipe categories
 - Implementing notifications
 - Enhancing search functionality
+
+
+- To send verify email use 'nodemailer'
+1. Create mailer.js to send email
+2. Create /api/verifyemail to update the isVerified status
+
+- To show a preview of the image the user selects before uploading it, use a 'FileReader' to read the file and display it. 
+1. Update the handleImageUpload function to read the selected file and set it as a preview image.
+2. Add an imagePreview state to hold the preview image URL.
