@@ -3,7 +3,7 @@ import User from '@/models/user';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'; // Import JWT library
 import { NextResponse } from 'next/server';
-
+import { sendEmail } from "@/helpers/mailer";
 connect();
 
 export async function POST(req) {
@@ -23,6 +23,11 @@ export async function POST(req) {
 
     await newUser.save();
 
+    
+        //send verification email
+
+        await sendEmail({email, emailType: "VERIFY", userId: newUser._id})
+
     // Generate token
     const tokenData = {
       id: newUser._id,
@@ -33,8 +38,9 @@ export async function POST(req) {
     const token = jwt.sign(tokenData, process.env.TOKEN, { expiresIn: '7d' }); // Adjust token expiration as needed
 
     const response = NextResponse.json({
-      message: "Login successful",
+      message: "User created successfully",
       success: true,
+      newUser
   })
   response.cookies.set("token", token, {
       httpOnly: true, 
