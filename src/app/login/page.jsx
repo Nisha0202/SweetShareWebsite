@@ -19,9 +19,28 @@ export default function Login() {
   const nextPath = searchParams.get('next') || '/';
   const { setUser, fetchCurrentUser } = useAppContext();
 
-  const handleSubmit = async (e) => {
+  const checkEmailExists = async (email) => {
+    try {
+      const response = await axios.get(`/api/user/signup/email?email=${email}`);
+      return response.data.exists;
+    } catch (error) {
+      throw new Error('Error checking email');
+    }
+  };
+
+  const matchUser = async (email, password) => {
+    try {
+      const response = await axios.post(`/api/user/login`, { email, password });
+      return response;
+    } catch (error) {
+      throw new Error('Error checking email and password');
+    }
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
 
     if (!email || password.length === 0) {
       setLoading(false);
@@ -29,33 +48,40 @@ export default function Login() {
       return;
     }
 
-    try {
-      const response = await axios.post('/api/user/login', { email, password });
-      if (response.status === 200 && response.data.success) {
-        setUser(response.data.data);
-        fetchCurrentUser();
+    checkEmailExists(email)
+      .then((emailExists) => {
+        if (!emailExists) {
+          setLoading(false);
+          showAlert('Error', 'You have not signed up before, please Sign Up.');
+          router.push('/signup');
+          return Promise.reject('Email does not exist');
+        }
+
+        return matchUser(email, password);
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          setLoading(false);
+          setUser(response.data.data);
+          fetchCurrentUser();
+          showAlert('Success', 'You have logged in successfully!');
+          setEmail('');
+          setPassword('');
+          router.push(nextPath);
+        } else {
+          setLoading(false);
+          showAlert('Error', 'There was an error logging in. Please try again.');
+        }
+      })
+      .catch((error) => {
+        if (error.message === 'Email does not exist') {
+          setError('Email does not exist');
+        } else {
+          setError('Invalid email or password');
+        }
         setLoading(false);
-        showAlert('Success', 'User logged in successfully!');
-        setEmail('');
-        setError('');
-        setPassword('');
-        router.push(nextPath);
-      } else {
-        setLoading(false);
-        showAlert('Login failed', response.data.error || 'Unexpected error');
-        setError('');
-      }
-    } catch (error) {
-      setLoading(false);
-      showAlert('Error', 'There was an error logging in!');
-      setError('');
-      console.error('Error logging in:', error);
-    }
+      });
   };
-
-
-
-
 
   const showAlert = (title, message) => {
     confirmAlert({
@@ -120,3 +146,4 @@ export default function Login() {
     </div>
   );
 }
+

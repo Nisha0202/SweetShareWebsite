@@ -92,7 +92,7 @@ export default function Signup() {
       .catch((error) => {
         if (error !== 'Email already exists') {
           setLoading(false);
-          showAlert('Error', 'There was an error signing up. Please try again.');
+          showAlert('Error', 'You are already signed up. Please login.');
           setError(false);
         }
       });
@@ -103,12 +103,12 @@ export default function Signup() {
     console.log('Alert title:', title); 
   
     const titleColor = title === 'Success'? 'text-secondary' : 'text-red-500';
-  
+    const msgColor = title === 'Success'? 'text-primary' : 'text-text';
     confirmAlert({
       customUI: ({ onClose }) => (
         <div className="w-80 p-4 flex flex-col gap-6 bg-white rounded-md border-2 shadow-md">
           <h1 className={`font-medium ${titleColor}`}>{title}</h1>
-          <p className="my-4 text-lg font-medium">{message}</p>
+          <p className={`${titleColor} my-4 msg text-lg font-medium`}>{message}</p>
           <button className="btn rounded-md px-4 py-2 hover:bg-primary-dark" onClick={onClose}>
             OK
           </button>

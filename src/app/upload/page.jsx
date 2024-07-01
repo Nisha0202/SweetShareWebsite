@@ -145,8 +145,8 @@ const RecipeForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-[calc(100vh-240px)]">
-      <div className="max-w-[1200px] mt-4">
+    <div className="flex flex-col items-center min-h-[calc(100vh-235px)] ">
+      <div className="max-w-[1200px] my-auto">
         {currentStep === 1 && (
           <div className='card min-w-[310px] h-[360px] border-2 p-4 rounded-md'>
             <h3 className="text-lg font-bold mb-6">Step 1: Name and Description</h3>
@@ -172,7 +172,7 @@ const RecipeForm = () => {
               <Link href="/" className="text-primary font-medium">
                 Cancel
               </Link>
-              <button onClick={handleNext} className={`font-bold py-2 px-4 rounded ${isNextDisabled ? 'text-gray-400' : 'text-secondary hover:bg-accent'}`} disabled={isNextDisabled}>
+              <button onClick={handleNext} className={`mr-2 font-bold py-2 px-4 rounded ${isNextDisabled ? 'text-gray-400' : 'text-secondary hover:bg-accent'}`} disabled={isNextDisabled}>
                 Next
               </button>
             </div>
@@ -192,7 +192,7 @@ const RecipeForm = () => {
             </button>
             <div className="flex justify-between absolute bottom-3 w-72 items-center">
               <button className='text-primary font-medium' onClick={handlePrevious}>Previous</button>
-              <button onClick={handleNext} className={`font-bold py-2 px-4 rounded ${isNextDisabled ? 'text-gray-400' : 'text-secondary hover:bg-accent'}`} disabled={isNextDisabled}>
+              <button onClick={handleNext} className={`mr-2 font-bold py-2 px-4 rounded ${isNextDisabled ? 'text-gray-400' : 'text-secondary hover:bg-accent'}`} disabled={isNextDisabled}>
                 Next
               </button>
             </div>
@@ -212,7 +212,7 @@ const RecipeForm = () => {
             </button>
             <div className="flex justify-between absolute bottom-3 w-72 items-center">
               <button onClick={handlePrevious} className='text-primary font-medium'>Previous</button>
-              <button onClick={handleNext} className={`font-bold py-2 px-4 rounded ${isNextDisabled ? 'text-gray-400' : 'hover:bg-accent'}`} disabled={isNextDisabled}>
+              <button onClick={handleNext} className={`font-bold mr-2 py-2 px-4 rounded ${isNextDisabled ? 'text-gray-400' : 'hover:bg-accent'}`} disabled={isNextDisabled}>
                 Next
               </button>
             </div>

@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 
 connect();
 
+//check if email already logged in 
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);

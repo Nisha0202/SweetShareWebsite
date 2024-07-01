@@ -13,14 +13,10 @@ export async function POST(req) {
     const body = await req.json();
     const {email, password } = body;
 
-    // Check if user not exists
+    //fetch
     const user = await User.findOne({ email });
-    if (!user) {
-        return NextResponse.json({ message: "User is not Signed in.", success: false}, {status: 400});
-    }
 
     // Hash password
-
     const validPassword = await bcrypt.compare(password, user.password);
 
     if (!validPassword){

@@ -150,6 +150,10 @@ RecipeShare is a community-driven platform where users can share, discover, and 
 - Enhancing search functionality
 
 
+- To user authentication
+1. Used Token based sign up and login
+2. to keep UI dynamic used UseContext  
+
 - To send verify email use 'nodemailer'
 1. Create mailer.js to send email
 2. Create /api/verifyemail to update the isVerified status
