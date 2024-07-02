@@ -64,7 +64,7 @@ export default function Signup() {
         if (emailExists) {
           setLoading(false);
           showAlert('Error', 'You have signed up before, please Log in.');
-          router.push('/'); 
+          router.push('/login'); 
           return Promise.reject('Email already exists');
         }
   
@@ -108,7 +108,7 @@ export default function Signup() {
       customUI: ({ onClose }) => (
         <div className="w-80 p-4 flex flex-col gap-6 bg-white rounded-md border-2 shadow-md">
           <h1 className={`font-medium ${titleColor}`}>{title}</h1>
-          <p className={`${titleColor} my-4 msg text-lg font-medium`}>{message}</p>
+          <p className={`${msgColor} my-4 msg text-lg font-medium`}>{message}</p>
           <button className="btn rounded-md px-4 py-2 hover:bg-primary-dark" onClick={onClose}>
             OK
           </button>

@@ -32,7 +32,15 @@ export async function POST(req) {
       email: newUser.email,
     };
 
-    const token = jwt.sign(tokenData, process.env.TOKEN, { expiresIn: '7d' }); // Adjust token expiration as needed
+        // Option to prevent dots in the token
+        const token = jwt.sign(tokenData, process.env.TOKEN, {
+          expiresIn: '7d',
+          // Ensure no dots in the resulting token
+          jwtid: 'unique-id-without-dots'
+        });
+    
+    
+    // const token = jwt.sign(tokenData, process.env.TOKEN, { expiresIn: '7d' }); // Adjust token expiration as needed
 
     const response = NextResponse.json({
       message: "User created successfully",

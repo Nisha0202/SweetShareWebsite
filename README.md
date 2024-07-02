@@ -1,3 +1,4 @@
+
 1. npm i next-auth mongodb   
 2. npm i -D daisyui@latest
 3. npm install react-icons
@@ -11,26 +12,28 @@
 
 
 
-//when image upload the image will show on screen 
+ 
 //theme
-//recepie data save
+// recepie data save
 // like button
 // most liked dishes author
 // edite profile
-//verify email
-// login error , is user exists? wrong credentials
+// forget password
+// googe login sign up
+
 
 1. token generates when sign up or login 
 2. profile
 3. private routes
 4. multi step form
 6. dynamic navbar
-
-
+7. login error , is user exists? wrong credentials
+8. verify email
+9. when image upload the image will show on screen
 
 # RecipeShare
 
-RecipeShare is a community-driven platform where users can share, discover, and save their favorite recipes. The website features user authentication, recipe management, and social interactions like comments and ratings.
+SweetShare is a community-driven platform where users can share, discover, and save their favorite recipes. The website features user authentication, recipe management, and social interactions through reacting.
 
 ## Features
 
