@@ -92,8 +92,9 @@ export default function Header() {
           <div className="flex justify-between w-full md:w-auto items-center">
               <div className='my-1'>
                   <Link href="/"
-                       className="text-lg text-secondary font-bold sawarabi">
-                          SweetShare
+                       className=" flex text-lg text-secondary font-bold sawarabi">
+                          SweetShare hi 
+                        
                       
                   </Link>
               </div>
