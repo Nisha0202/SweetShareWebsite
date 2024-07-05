@@ -2,7 +2,7 @@
 import React from 'react'
 import Hero from '../../components/Hero'
 import FeaturedRecipesCarousel from '../../components/FeaturedRecipesCarousel'
-import UserInteractionPage from './UserInteractionPage'
+import UserInteractionPage from '../../components/UserInteractionPage'
 
 export default function HomePage() {
   return (
