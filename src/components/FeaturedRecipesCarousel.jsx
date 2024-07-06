@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
