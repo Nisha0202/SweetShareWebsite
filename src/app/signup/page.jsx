@@ -18,7 +18,7 @@ export default function Signup() {
   
   const checkEmailExists = async (email) => {
     try {
-      const response = await axios.get(`/api/user/signup/email?email=${email}`);
+      const response = await axios.get(`${process.env.DOMAIN}/api/user/signup/email?email=${email}`);
       return response.data.exists;
     } catch (error) {
       throw new Error('Error checking email');
@@ -27,7 +27,7 @@ export default function Signup() {
 
   const signupUser = async (username, email, password) => {
     try {
-      const response = await axios.post('/api/user/signup', {
+      const response = await axios.post(`${process.env.DOMAIN}/api/user/signup`, {
         username,
         email,
         password,

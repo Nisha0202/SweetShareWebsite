@@ -12,7 +12,7 @@ export const AppWrapper = ({ children }) => {
   const fetchCurrentUser = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('/api/currentprofile');
+      const response = await axios.get(`${process.env.DOMAIN}/api/currentprofile`);
       setUser(response.data.data);
       console.log(response.data.data);
     } catch (error) {
@@ -35,34 +35,3 @@ export const AppWrapper = ({ children }) => {
 
 export const useAppContext = () => useContext(AppContext);
 
-
-// import React, { createContext, useContext, useState, useEffect } from 'react';
-// import axios from 'axios';
-// import { useRouter } from 'next/navigation';
-
-// const AppContext = createContext();
-
-// export const AppWrapper = ({ children }) => {
-//   const [user, setUser] = useState(null);
-
-//   useEffect(() => {
-//     // Fetch the current user when the component mounts
-//     axios.get('/api/currentprofile')
-//       .then(response => {
-//         setUser(response.data.data);
-//         setLoading(false);
-//       })
-//       .catch(() => {
-//         setLoading(false);
-//       });
-//   }, []);
-
-
-//   return (
-//     <AppContext.Provider value={{user, setUser }}>
-//       {children}
-//     </AppContext.Provider>
-//   );
-// };
-
-// export const useAppContext = () => useContext(AppContext);

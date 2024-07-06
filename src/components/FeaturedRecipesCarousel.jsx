@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import './FeaturedRecipesCarousel.css'; // Import your CSS file for styling
 import Link from 'next/link';
 
+
 const FeaturedRecipesCarousel = () => {
 
 const [recipes, setRecipes] = useState([]);
@@ -48,6 +49,7 @@ const [recipes, setRecipes] = useState([]);
                   src={recipe.imageUrl}
                   alt={recipe.title}
                 />
+    
             </Link>
             <div className="carousel-content grid place-content-center">
               <h3 className='font-bold text-lg text-text'>{recipe.title}</h3>
