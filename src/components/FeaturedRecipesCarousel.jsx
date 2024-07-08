@@ -46,7 +46,7 @@ const [recipes, setRecipes] = useState([]);
           <div key={recipe._id} className='border-0 outline-none'>
             <Link href={`/recipes/${recipe._id}`} legacyBehavior>
                 <img
-                  className="carousel-image rounded-md border-2 outline-none hover:opacity-70"
+                  className="carousel-image cursor-pointer rounded-md border-2 outline-none hover:opacity-70"
                   src={recipe.imageUrl}
                   alt={recipe.title}
                 />
