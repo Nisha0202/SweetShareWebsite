@@ -27,7 +27,7 @@ export default function VerifyEmailPage() {
 
 
 const verify = async () => {
-  axios.post(`${process.env.DOMAIN}/api/verifyemail`, { token })
+  axios.post(`/api/verifyemail`, { token })
     .then(res => {
       console.log(res);
 

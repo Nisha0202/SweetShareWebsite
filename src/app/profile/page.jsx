@@ -1,13 +1,14 @@
  "use client";
+import { useAppContext } from '@/context';
 import axios from 'axios';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 export default function Profile() {
-  const [user, setUser] = useState(null); // Initialize user as null
-
-  const [loading, setLoading] = useState(true); // State to track loading status
+  // const [user, setUser] = useState(null); // Initialize user as null
+  const { user, setUser, loading, setLoading } = useAppContext();
+  // const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +22,7 @@ export default function Profile() {
       }
     };
     fetchData();
-  }, []); //this effect runs once on mount
+  }, [user]); //this effect runs once on mount
 
 
   return (
