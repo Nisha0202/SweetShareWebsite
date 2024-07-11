@@ -13,7 +13,7 @@ export default function Profile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${process.env.DOMAIN}/api/currentprofile1`);
+        const res = await axios.get('/api/currentprofile');
         setUser(res.data.data); // Assuming res.data contains the user object
       } catch (error) {
         console.error('Error fetching user details:', error.message);
