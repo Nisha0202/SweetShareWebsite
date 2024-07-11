@@ -27,7 +27,7 @@ export default function VerifyEmailPage() {
 
 
 const verify = async () => {
-  axios.post(`/api/verifyemail`, { token })
+  axios.post(`https://sweet-share-latest.vercel.app/api/verifyemail`, { token })
     .then(res => {
       console.log(res);
 
