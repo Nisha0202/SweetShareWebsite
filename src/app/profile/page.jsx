@@ -22,7 +22,7 @@ export default function Profile() {
       }
     };
     fetchData();
-  }, [user]); //this effect runs once on mount
+  }, []);
 
 
   return (
