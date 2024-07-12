@@ -19,10 +19,10 @@ import { useAppContext } from '@/context';
   const nextPath = searchParams.get('next') || '/';
   const { setUser, fetchCurrentUser } = useAppContext();
 
-  console.log(process.env.DOMAIN);
   const checkEmailExists = async (email) => {
     try {
-      const response = await axios.get(`/api/user/signup/email?email=${email}`);
+      // const response = await axios.get(`/api/user/signup/email?email=${email}`);
+      const response = await axios.get(`/api/user/signup/email?email=${encodeURIComponent(email)}`);
       return response.data.exists;
     } catch (error) {
       throw new Error('Error checking email');
