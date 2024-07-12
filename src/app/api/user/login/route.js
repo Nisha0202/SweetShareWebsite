@@ -7,8 +7,6 @@ const jwt = require('jsonwebtoken');
 connect();
 
 export async function POST(req) {
-
-
   try {
     const body = await req.json();
     const { email, password } = body;
@@ -28,9 +26,6 @@ export async function POST(req) {
       username: user.username,
       email: user.email
     }
-    //create token
-    // const token = jwt.sign(tokenData, process.env.TOKEN, { expiresIn: "7d" });
-
 
     // Option to prevent dots in the token
     const token = jwt.sign(tokenData, process.env.TOKEN, {

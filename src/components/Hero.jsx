@@ -21,7 +21,7 @@ const Hero = () => {
         <div>
           <h1 className="text-4xl font-bold drop-shadow-xl">Welcome to SweetShare</h1>
           <p className="mt-4 mb-6 drop-shadow-lg">Discover and share the best dessert recipes from around the world.</p>
-          <Link href={'/recipes'} className=" bg-primary p-2 rounded-md">Explore Recipes</Link>
+          <Link href={'/recipes'} className=" bg-primary font-bold px-4 border-0 btn rounded-md hover:scale-110">Explore Recipes</Link>
         </div>
       </div>
     </section>

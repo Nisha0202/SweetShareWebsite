@@ -59,7 +59,7 @@ export default function Header() {
 
   const logout = async () => {
     try {
-      await axios.get(`https://sweet-share-latest.vercel.app/api/user/logout`);
+      await axios.get(`/api/user/logout`);
       setUser(null); // Update user state first
       fetchCurrentUser();
       setLoading(false); // Then update loading state

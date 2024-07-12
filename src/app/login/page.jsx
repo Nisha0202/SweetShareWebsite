@@ -22,7 +22,7 @@ import { useAppContext } from '@/context';
   console.log(process.env.DOMAIN);
   const checkEmailExists = async (email) => {
     try {
-      const response = await axios.get(`https://sweet-share-latest.vercel.app/api/user/signup/email?email=${email}`);
+      const response = await axios.get(`/api/user/signup/email?email=${email}`);
       return response.data.exists;
     } catch (error) {
       throw new Error('Error checking email');
@@ -31,7 +31,7 @@ import { useAppContext } from '@/context';
 
   const matchUser = async (email, password) => {
     try {
-      const response = await axios.post(`https://sweet-share-latest.vercel.app/api/user/login`, { email, password });
+      const response = await axios.post(`/api/user/login`, { email, password });
       return response;
     } catch (error) {
       throw new Error('Error checking email and password');
