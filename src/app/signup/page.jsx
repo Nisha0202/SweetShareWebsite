@@ -92,7 +92,7 @@ export default function Signup() {
       .catch((error) => {
         if (error !== 'Email already exists') {
           setLoading(false);
-          showAlert('Error', 'You are already signed up. Please login.');
+          showAlert('Error', 'Error');
           setError(false);
         }
       });
