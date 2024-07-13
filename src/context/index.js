@@ -11,7 +11,9 @@ export const AppWrapper = ({ children }) => {
   const fetchCurrentUser = useCallback(async () => {
     setLoading(true);
     try {
+      console.log("adnan1")
       const response = await axios.get('/api/currentprofile');
+      console.log("adnan2")
       setUser(response.data.data);
       console.log(response.data.data);
     } catch (error) {
