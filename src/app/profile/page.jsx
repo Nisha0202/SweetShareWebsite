@@ -6,9 +6,9 @@ import { useState, useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 export default function Profile() {
-  // const [user, setUser] = useState(null); // Initialize user as null
+ // const [user, setUser] = useState(null); // Initialize user as null
   const { user, setUser, loading, setLoading } = useAppContext();
-  // const [loading, setLoading] = useState(true); // State to track loading status
+ // const [loading, setLoading] = useState(true); // State to track loading status
 
   useEffect(() => {
     const fetchData = async () => {
